@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChirpController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Jetstream;
 
@@ -17,6 +18,11 @@ use Laravel\Jetstream\Jetstream;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('chirps', ChirpController::class)
+    ->only(['index', 'store'])
+    ->middleware(['auth', 'verified']);
+
 
 Route::get('/policy', function () {
     // $x = abort(301);

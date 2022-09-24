@@ -14,7 +14,20 @@ export default function App() {
         user = setUser(await res.json());
     }
 
-    return <div>User: {user.name}</div>;
+    console.log(window.csrf_field);
+    return (
+        <div>
+            <form>
+                <div>
+                    <label>Chirp</label>
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                </div>
+                <div>
+                    <button>Submit</button>
+                </div>
+            </form>
+        </div>
+    );
 }
 const container = document.getElementById("App");
 const root = createRoot(container);
