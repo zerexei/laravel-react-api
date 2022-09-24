@@ -9,7 +9,7 @@ use Laravel\Jetstream\Jetstream;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
+| routes are loaded by the RouteServiceProvider within a group  which
 | contains the "web" middleware group. Now create something great!
 |
 */
@@ -19,6 +19,15 @@ Route::get('/', function () {
 });
 
 Route::get('/policy', function () {
+    // $x = abort(301);
+    // $x = app_path();
+    // $x = asset('assets');
+    // $x = config_path();
+    // $x = info('my info');
+    // $x = logger('asd');
+    // $x = lang_path();
+    $x = secure_asset('.');
+    dd($x);
     // $policyFile = Jetstream::localizedMarkdownPath('policy.md');
 
     $policyFile = resource_path('markdown/policy.md');
