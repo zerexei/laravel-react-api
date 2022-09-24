@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chirp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ChirpController extends Controller
 {
@@ -35,14 +36,29 @@ class ChirpController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'message' => 'required|string|max:255',
-        ]);
+        if (Storage::disk()->exists('avatars/kMLKBF3JH4XlSNRvzPeoNMzN4I7ifiILusVJC8qn.png')) {
+            return Storage::download('avatars/kMLKBF3JH4XlSNRvzPeoNMzN4I7ifiILusVJC8qn.png');
+        }
+        // $path = $request->file('avatar')->store('avatars');
+        // $path = $request->file('avatar')->storeAs(
+        //     'avatars',
+        //     $request->user()->id
+        // );
 
-        $request->user()->chirps()->create($validated);
-
+        // dd($path);
         return redirect(route('chirps.index'));
     }
+
+    // public function store(Request $request)
+    // {
+    //     $validated = $request->validate([
+    //         'message' => 'required|string|max:255',
+    //     ]);
+
+    //     $request->user()->chirps()->create($validated);
+
+    //     return redirect(route('chirps.index'));
+    // }
 
     /**
      * Display the specified resource.

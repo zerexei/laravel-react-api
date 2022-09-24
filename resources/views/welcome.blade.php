@@ -31,8 +31,12 @@
 
                 @endforelse
             </div>
-            <form action="/chirps" method="POST" class="space-y-4">
+            <form action="/chirps" method="POST" enctype="multipart/form-data" class="space-y-4">
                 @csrf
+                <div class="flex flex-col gap-4">
+                    <label>Avatar</label>
+                    <input type="file" name="avatar" />
+                </div>
                 <div class="flex flex-col gap-4">
                     <label>Message</label>
                     <textarea name="message" rows="10"></textarea>
