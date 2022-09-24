@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Laravel\Jetstream\Jetstream;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/policy', function () {
+    // $policyFile = Jetstream::localizedMarkdownPath('policy.md');
+
+    $policyFile = resource_path('markdown/policy.md');
+    dd($policyFile);
+    return view('policy', [
+        'policy' => str()->markdown(file_get_contents($policyFile)),
+    ]);
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
