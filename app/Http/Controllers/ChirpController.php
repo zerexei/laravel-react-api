@@ -36,9 +36,10 @@ class ChirpController extends Controller
      */
     public function store(Request $request)
     {
-        if (Storage::disk()->exists('avatars/kMLKBF3JH4XlSNRvzPeoNMzN4I7ifiILusVJC8qn.png')) {
-            return Storage::download('avatars/kMLKBF3JH4XlSNRvzPeoNMzN4I7ifiILusVJC8qn.png');
-        }
+        dd(response()->json('successr'));
+        // if (Storage::disk()->exists('avatars/kMLKBF3JH4XlSNRvzPeoNMzN4I7ifiILusVJC8qn.png')) {
+        //     return Storage::download('avatars/kMLKBF3JH4XlSNRvzPeoNMzN4I7ifiILusVJC8qn.png');
+        // }
         // $path = $request->file('avatar')->store('avatars');
         // $path = $request->file('avatar')->storeAs(
         //     'avatars',
