@@ -1,13 +1,26 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/inertia-vue3";
-import { ref, watchEffect } from "vue";
+import { ref, watch, watchEffect } from "vue";
 let users = ref([]);
 
-watchEffect(async () => {
+// watch(users, async (newUsers) => {
+//     console.log("new users: ", newUsers);
+//     users.value = newUsers;
+// });
+
+const getUsers = async () => {
     const response = await fetch("/api/users");
     users.value = await response.json();
-});
+};
+
+getUsers();
+console.log(users.value);
+
+// watchEffect(async () => {
+//     getUsers();
+// });
+
 </script>
 
 <template>
